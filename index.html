@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vy Hub | 絕對制裁 ‧ 伺服器終結引擎</title>
+    <link rel="icon" href="https://i.pinimg.com/736x/53/95/4e/53954ecbb1087ddc0678f85b4b82006f.jpg" type="image/jpeg">
+    <meta name="title" content="Vy Hub | 絕對制裁 ‧ 伺服器終結引擎">
+    <meta name="description" content="【警告】此領域受 Vy Hub 核心武裝支配。我們是 Discord 的秩序重構者，專為粉碎無知與傲慢而生。臣服，或者被毀滅。即刻加入以解鎖你的制裁權限。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content=""> 
+    <meta property="og:title" content="Vy Hub | 絕對制裁 ‧ 伺服器終結引擎">
+    <meta property="og:description" content="【警告】此領域受 Vy Hub 核心武裝支配。我們是 Discord 的秩序重構者，專為粉碎無知與傲慢而生。臣服，或者被毀滅。即刻加入以解鎖你的制裁權限。">
+    <meta property="og:image" content="https://i.pinimg.com/736x/3e/6c/8d/3e6c8d227acc093252f8a0b6940d40dd.jpg"> 
+    <meta name="theme-color" content="#000000"> 
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;500;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --main-white: #ffffff;
+            --sub-grey: #a0a0a0;
+            --bg-dark: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --pop-duration: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--main-white);
+            font-family: 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body.locked {
+            overflow: hidden;
+        }
+
+        #entry-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .enter-btn {
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            padding: 12px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enter-btn:hover {
+            color: #000000;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+
+        .enter-btn::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: -1;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .enter-btn:hover::after {
+            width: 100%;
+        }
+
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: url('https://i.pinimg.com/originals/ba/72/f1/ba72f1f2bebd76b12d5eba88cd55ccf7.gif') center/cover no-repeat;
+            filter: grayscale(100%) brightness(30%);
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-links a {
+            color: var(--sub-grey);
+            text-decoration: none;
+            margin: 0 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(4rem, 15vw, 8rem);
+            font-weight: 900;
+            letter-spacing: 20px;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff, #444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glitch 3s infinite;
+        }
+
+        section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            margin-bottom: 60px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.4s ease, border 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+        }
+
+        .glass-card:hover {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card.reveal {
+            opacity: 1;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            letter-spacing: 5px;
+            border-left: 4px solid #fff;
+            padding-left: 20px;
+            transition: border-left 0.4s;
+        }
+
+        .glass-card:hover h2 {
+            border-left: 4px solid #ccc; 
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--sub-grey);
+            line-height: 2;
+            transition: color 0.4s;
+        }
+
+        .glass-card:hover p {
+            color: #fff;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            padding: 30px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s;
+        }
+
+        .feature-box h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover h4 {
+            transform: translateX(10px);
+        }
+
+        .dev-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .dev-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            transition: 0.4s ease;
+        }
+
+        .dev-card:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .dev-avatar {
+            width: 140px;
+            height: 140px;
+            border: 1px solid #fff;
+            padding: 5px;
+            border-radius: 50%;
+            transition: 0.5s;
+        }
+
+        .dev-card:hover .dev-avatar {
+            transform: rotate(360deg);
+            border: 1px solid #000;
+        }
+
+        .dev-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: grayscale(100%);
+        }
+
+        .dev-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .dev-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .uid-code {
+            font-family: 'Courier New', monospace;
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .dev-card:hover .uid-code {
+            color: #444;
+        }
+
+        .dev-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .data-list {
+            text-align: left;
+            margin-top: 10px;
+            list-style: none;
+        }
+
+        .data-list li {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .data-list li strong {
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-main {
+            padding: 15px 45px;
+            border: 1px solid #fff;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            transition: 0.5s ease;
+            display: inline-block;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-main:hover {
+            color: #000;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-main::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background-color: #fff;
+            z-index: -1;
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-main:hover::after {
+            width: 100%;
+        }
+
+        @keyframes glitch {
+            0% { transform: skew(0deg); }
+            2% { transform: skew(5deg); text-shadow: 5px 0 red; }
+            4% { transform: skew(-5deg); text-shadow: -5px 0 blue; }
+            6% { transform: skew(0deg); }
+            100% { transform: skew(0deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card { padding: 30px; }
+            .dev-card { text-align: center; }
+            .nav-links a { margin: 0 6px; font-size: 0.6rem; letter-spacing: 2px; }
+        }
+    </style>
+</head>
+<body class="locked">
+
+    <div id="entry-screen">
+        <button class="enter-btn" id="enter-btn">𝖨𝗇𝗌𝗍𝖺𝗅𝗅 𝖵𝗒 𝖧𝗎𝖻</button>
+    </div>
+
+    <div class="bg-container"></div>
+    <div class="scanline"></div>
+
+    <nav>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#origin">Origin</a>
+            <a href="#target">Target</a>
+            <a href="#bot">Vy Bot</a>
+            <a href="#features">Features</a>
+            <a href="#dev">Developers</a>
+            <a href="#community">Community</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <h1>VY HUB</h1>
+        <p style="letter-spacing: 10px; color: #666; font-size: 0.9rem;">CHAOS CONTROL ENGINE v2.5</p>
+        <a href="#about" class="btn-main">INITIALIZE</a>
+    </header>
+
+    <section id="about">
+        <div class="glass-card reveal">
+            <h2>關於我們 / ABOUT US</h2>
+            <p>
+                Vy Hub 誕生於對極致效率的純粹追求。在數位社群日益龐大與複雜的今天，我們不妥協於繁瑣的管理流程。我們專注於打造最簡約、最具侵略性的自動化控制核心。
+                <br><br>
+                在數位世界的混沌邊緣，我們深知速度與掌控是一切的基石。Vy Hub 不只是一個工具，它是對速度與 raw power 的異步實現。我們不計成本地採用最快、最即時的技術堆疊，只為在毫秒間觸達目標。
+            </p>
+        </div>
+    </section>
+
+    <section id="origin">
+        <div class="glass-card reveal">
+            <h2>成立宗旨 / ORIGIN</h2>
+            <p>
+                因為 Discord 目前太多屁孩，我們成立 Vy Hub 就是為了教訓這些人。我們透過絕對的制裁力量與自動化武器，讓他們明白什麼是真正的統治與法則——這是他們應得的代價。
+            </p>
+        </div>
+    </section>
+
+    <section id="target">
+        <div class="glass-card reveal">
+            <h2>終極目標 / ULTIMATE TARGET</h2>
+            <p>
+                我們的目標是在 Discord 毀滅界刻下無法抹滅的歷史。我們將化身為制裁的具現化，無情懲罰那些自以為是、狂妄無知的傲慢之徒。在 Vy 的絕對力量面前，所有的虛偽都將被徹底粉碎。
+            </p>
+        </div>
+    </section>
+
+    <section id="bot">
+        <div class="glass-card reveal">
+            <h2>核心武裝 / VY PROTOCOL</h2>
+            <p>
+                「當伺服器化為灰燼，Vy 便是唯一的法則。」
+                <br><br>
+                這不僅僅是一行代碼，而是絕對的秩序重構。Vy 是一台專為極端環境打造的防禦與毀滅引擎。我們不講求和平過渡，我們在混亂中建立絕對的統治。透過極致的異步演算與高壓的權限覆蓋，Vy 能夠在毫秒間粉碎一切未經授權的威脅，並將您的意志刻印在資料的廢墟之上。
+            </p>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="glass-card reveal">
+            <h2>核心功能 / CORE FEATURES</h2>
+            <div class="feature-list">
+                <div class="feature-box">
+                    <h4>ULTRA NUKE</h4>
+                    <p>利用異步 (aiohttp) 與多線程架構，在毫秒內瞬間清除所有頻道、角色與權限設定，彻底重構伺服器環境。</p>
+                </div>
+                <div class="feature-box">
+                    <h4>PRO CONFIG</h4>
+                    <p>高級用戶自定義 Embed 訊息設定。支持自定義名稱、描述與個人化標記，展現您的極致風格。</p>
+                </div>
+                <div class="feature-box">
+                    <h4>SHIELD GUARD</h4>
+                    <p>強大的伺服器白名單保護系統，確保重要數據與核心伺服器在執行壓力測試時絕對安全。</p>
+                </div>
+                <div class="feature-box">
+                    <h4>MEMBER SWEEP</h4>
+                    <p>高效成員清理與封鎖機制，支持大範圍高速操作，確保伺服器環境完全符合您的混沌治理模式。</p>
+                </div>
+                <div class="feature-box">
+                    <h4>LOG STREAMING</h4>
+                    <p>即時監控每一項執行細節，透過專用頻道推送詳細日誌，確保每一次操作都精準無誤。</p>
+                </div>
+                <div class="feature-box">
+                    <h4>BAN WAVE</h4>
+                    <p>大範圍、多併發成員封鎖工具，針對惡意入侵提供高速打擊能力，迅速重整伺服器秩序。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dev">
+        <div class="glass-card reveal">
+            <h2>開發者 / DEVELOPERS</h2>
+            <div class="dev-grid">
+                <div class="dev-card feature-box">
+                    <div class="dev-avatar">
+                        <img src="https://i.pinimg.com/736x/42/59/6a/42596a0238945f90f2306225b2bf5187.jpg" alt="小堅果">
+                    </div>
+                    <h3 class="dev-name">小堅果 ღ𝑅𝑒𝑧𝑡ღ</h3>
+                    <div class="uid-code">UID: 1183748865929781254</div>
+                    <p class="dev-desc">Vy Hub 首席代碼架構師與異步異構專家。致力於打造數位世界的極簡暴力美學。</p>
+                </div>
+
+                <div class="dev-card feature-box">
+                    <div class="dev-avatar">
+                        <img src="https://i.pinimg.com/736x/17/87/d3/1787d3e3ebf0d9aa274e5bba64ad82f5.jpg" alt="17">
+                    </div>
+                    <h3 class="dev-name">17</h3>
+                    <div class="uid-code">UID: 1086631023456038915</div>
+                    <ul class="data-list dev-desc">
+                        <li><strong>Personality:</strong> 𝓔𝓝𝓕𝓟</li>
+                        <li><strong>IG:</strong> 13_17i_x</li>
+                        <li><strong>Birth Year:</strong> 2012</li>
+                        <li><strong>Gender:</strong> 男</li>
+                        <li><strong>Role 1:</strong> Vy admin</li>
+                        <li><strong>Role 2:</strong> Vy owner</li>
+                    </ul>
+                </div>
+
+                <div class="dev-card feature-box">
+                    <div class="dev-avatar">
+                        <img src="https://i.pinimg.com/736x/2e/4b/eb/2e4beb80079eac2464b3907619a745ed.jpg" alt="drancat">
+                    </div>
+                    <h3 class="dev-name">drancat</h3>
+                    <div class="uid-code">UID: 1084139312779624538</div>
+                    <p class="dev-desc">我是小男娘</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="community" style="text-align: center;">
+        <div class="glass-card reveal">
+            <h2>我們的社群 / COMMUNITY</h2>
+            <p>想要獲取 PRO 權限、獲取 Token 或第一手更新消息？加入我們的全球社群。</p>
+            <a href="https://discord.gg/fAAbtVZJgH" class="btn-main" target="_blank">JOIN US</a>
+        </div>
+    </section>
+
+    <footer>
+        DESIGNED FOR CHAOS | CORE CODING BY 小堅果 &copy; 2026 VY HUB | STATUS: STABLE
+    </footer>
+
+    <script>
+        const entryScreen = document.getElementById('entry-screen');
+        const enterBtn = document.getElementById('enter-btn');
+        const body = document.body;
+
+        enterBtn.addEventListener('click', () => {
+            entryScreen.style.opacity = '0';
+            setTimeout(() => {
+                entryScreen.style.visibility = 'hidden';
+                body.classList.remove('locked');
+            }, 800);
+        });
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.15,
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
