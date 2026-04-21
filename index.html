@@ -8,13 +8,12 @@
     <meta name="title" content="Vy Hub | 絕對制裁 ‧ 伺服器終結引擎">
     <meta name="description" content="【警告】此領域受 Vy Hub 核心武裝支配。我們是 Discord 的秩序重構者，專為粉碎無知與傲慢而生。臣服，或者被毀滅。即刻加入以解鎖你的制裁權限。">
     <meta property="og:type" content="website">
-    <meta property="og:url" content=""> 
+    <meta property="og:url" content="">
     <meta property="og:title" content="Vy Hub | 絕對制裁 ‧ 伺服器終結引擎">
     <meta property="og:description" content="【警告】此領域受 Vy Hub 核心武裝支配。我們是 Discord 的秩序重構者，專為粉碎無知與傲慢而生。臣服，或者被毀滅。即刻加入以解鎖你的制裁權限。">
-    <meta property="og:image" content="https://i.pinimg.com/736x/3e/6c/8d/3e6c8d227acc093252f8a0b6940d40dd.jpg"> 
-    <meta name="theme-color" content="#000000"> 
+    <meta property="og:image" content="https://i.pinimg.com/736x/3e/6c/8d/3e6c8d227acc093252f8a0b6940d40dd.jpg">
+    <meta name="theme-color" content="#000000">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;500;900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --main-white: #ffffff;
@@ -24,14 +23,12 @@
             --border: rgba(255, 255, 255, 0.1);
             --pop-duration: 0.3s;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             cursor: crosshair;
         }
-
         body {
             background-color: var(--bg-dark);
             color: var(--main-white);
@@ -39,11 +36,9 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-
         body.locked {
             overflow: hidden;
         }
-
         #entry-screen {
             position: fixed;
             top: 0;
@@ -57,7 +52,6 @@
             align-items: center;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-
         .enter-btn {
             background-color: #000000;
             color: #ffffff;
@@ -71,12 +65,10 @@
             position: relative;
             overflow: hidden;
         }
-
         .enter-btn:hover {
             color: #000000;
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
         }
-
         .enter-btn::after {
             content: '';
             position: absolute;
@@ -88,11 +80,9 @@
             z-index: -1;
             transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .enter-btn:hover::after {
             width: 100%;
         }
-
         .bg-container {
             position: fixed;
             top: 0;
@@ -103,7 +93,6 @@
             background: url('https://i.pinimg.com/originals/ba/72/f1/ba72f1f2bebd76b12d5eba88cd55ccf7.gif') center/cover no-repeat;
             filter: grayscale(100%) brightness(30%);
         }
-
         .scanline {
             position: fixed;
             top: 0;
@@ -115,7 +104,6 @@
             z-index: -1;
             pointer-events: none;
         }
-
         nav {
             position: fixed;
             top: 0;
@@ -129,7 +117,6 @@
             align-items: center;
             z-index: 1000;
         }
-
         .nav-links a {
             color: var(--sub-grey);
             text-decoration: none;
@@ -142,7 +129,6 @@
             padding-bottom: 5px;
             transition: color 0.3s;
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -153,15 +139,12 @@
             background-color: #fff;
             transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .nav-links a:hover {
             color: #fff;
         }
-
         .nav-links a:hover::after {
             width: 100%;
         }
-
         .hero {
             height: 100vh;
             display: flex;
@@ -170,7 +153,6 @@
             align-items: center;
             text-align: center;
         }
-
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(4rem, 15vw, 8rem);
@@ -182,13 +164,11 @@
             -webkit-text-fill-color: transparent;
             animation: glitch 3s infinite;
         }
-
         section {
             padding: 120px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .glass-card {
             background: var(--glass);
             border: 1px solid var(--border);
@@ -200,18 +180,15 @@
             opacity: 0;
             transform: translateY(40px) scale(0.98);
         }
-
         .glass-card:hover {
             transform: translateY(0) scale(1);
             box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
         .glass-card.reveal {
             opacity: 1;
         }
-
         h2 {
             font-family: 'Orbitron', sans-serif;
             font-size: 2.2rem;
@@ -221,54 +198,45 @@
             padding-left: 20px;
             transition: border-left 0.4s;
         }
-
         .glass-card:hover h2 {
-            border-left: 4px solid #ccc; 
+            border-left: 4px solid #ccc;
         }
-
         p {
             font-size: 1.1rem;
             color: var(--sub-grey);
             line-height: 2;
             transition: color 0.4s;
         }
-
         .glass-card:hover p {
             color: #fff;
         }
-
         .feature-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
-
         .feature-box {
             padding: 30px;
             border: 1px solid var(--border);
             background: rgba(255, 255, 255, 0.02);
             transition: 0.4s;
         }
-
         .feature-box h4 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.3rem;
             margin-bottom: 15px;
             transition: transform 0.3s;
         }
-
         .feature-box:hover h4 {
             transform: translateX(10px);
         }
-
         .dev-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin-top: 40px;
         }
-
         .dev-card {
             display: flex;
             flex-direction: column;
@@ -279,12 +247,10 @@
             background: rgba(255, 255, 255, 0.02);
             transition: 0.4s ease;
         }
-
         .dev-card:hover {
             background: #fff;
             color: #000;
         }
-
         .dev-avatar {
             width: 140px;
             height: 140px;
@@ -293,12 +259,10 @@
             border-radius: 50%;
             transition: 0.5s;
         }
-
         .dev-card:hover .dev-avatar {
             transform: rotate(360deg);
             border: 1px solid #000;
         }
-
         .dev-avatar img {
             width: 100%;
             height: 100%;
@@ -306,51 +270,42 @@
             border-radius: 50%;
             filter: grayscale(100%);
         }
-
         .dev-card:hover img {
             filter: grayscale(0%);
         }
-
         .dev-name {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
             margin-top: 20px;
             margin-bottom: 10px;
         }
-
         .uid-code {
             font-family: 'Courier New', monospace;
             color: #666;
             font-size: 0.8rem;
             margin-bottom: 15px;
         }
-
         .dev-card:hover .uid-code {
             color: #444;
         }
-
         .dev-desc {
             font-size: 1rem;
             line-height: 1.6;
         }
-
         .data-list {
             text-align: left;
             margin-top: 10px;
             list-style: none;
         }
-
         .data-list li {
             font-size: 0.9rem;
             margin-bottom: 5px;
             letter-spacing: 1px;
         }
-
         .data-list li strong {
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
         }
-
         .btn-main {
             padding: 15px 45px;
             border: 1px solid #fff;
@@ -366,12 +321,10 @@
             position: relative;
             overflow: hidden;
         }
-
         .btn-main:hover {
             color: #000;
             box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
         }
-
         .btn-main::after {
             content: '';
             position: absolute;
@@ -383,11 +336,9 @@
             z-index: -1;
             transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .btn-main:hover::after {
             width: 100%;
         }
-
         @keyframes glitch {
             0% { transform: skew(0deg); }
             2% { transform: skew(5deg); text-shadow: 5px 0 red; }
@@ -395,7 +346,6 @@
             6% { transform: skew(0deg); }
             100% { transform: skew(0deg); }
         }
-
         footer {
             text-align: center;
             padding: 60px;
@@ -403,7 +353,6 @@
             letter-spacing: 3px;
             color: #333;
         }
-
         @media (max-width: 768px) {
             .glass-card { padding: 30px; }
             .dev-card { text-align: center; }
@@ -412,6 +361,8 @@
     </style>
 </head>
 <body class="locked">
+
+    <audio id="bg-music" src="https://s31.aconvert.com/convert/p3r68-cdx67/iv3wa-h3pjq.mp3" loop></audio>
 
     <div id="entry-screen">
         <button class="enter-btn" id="enter-btn">𝖨𝗇𝗌𝗍𝖺𝗅𝗅 𝖵𝗒 𝖧𝗎𝖻</button>
@@ -474,7 +425,7 @@
             <p>
                 「當伺服器化為灰燼，Vy 便是唯一的法則。」
                 <br><br>
-                這不僅僅是一行代碼，而是絕對的秩序重構。Vy 是一台專為極端環境打造的防禦與毀滅引擎。我們不講求和平過渡，我們在混亂中建立絕對的統治。透過極致的異步演算與高壓的權限覆蓋，Vy 能夠在毫秒間粉碎一切未經授權的威脅，並將您的意志刻印在資料的廢墟之上。
+                這不僅僅是一行代碼，而是絕對的秩序重構。Vy 是一台專為極端環境打造的防禦與毀滅引擎。我們不講求和平過渡，我們在混難中建立絕對的統治。透過極致的異步演算與高壓的權限覆蓋，Vy 能夠在毫秒間粉碎一切未經授權的威脅，並將您的意志刻印在資料的廢墟之上。
             </p>
         </div>
     </section>
@@ -568,8 +519,10 @@
         const entryScreen = document.getElementById('entry-screen');
         const enterBtn = document.getElementById('enter-btn');
         const body = document.body;
+        const bgMusic = document.getElementById('bg-music');
 
         enterBtn.addEventListener('click', () => {
+            bgMusic.play().catch(e => console.log("Audio playback failed:", e));
             entryScreen.style.opacity = '0';
             setTimeout(() => {
                 entryScreen.style.visibility = 'hidden';
@@ -591,7 +544,10 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.glass-card').forEach(el => {
+            el.classList.add('reveal'); 
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
