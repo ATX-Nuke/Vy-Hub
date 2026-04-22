@@ -176,18 +176,18 @@
             backdrop-filter: blur(10px);
             border-radius: 4px;
             margin-bottom: 60px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.4s ease, border 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.4s ease, border 0.4s ease, opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             opacity: 0;
             transform: translateY(40px) scale(0.98);
         }
-        .glass-card:hover {
+        .glass-card.reveal {
+            opacity: 1;
             transform: translateY(0) scale(1);
+        }
+        .glass-card:hover {
             box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .glass-card.reveal {
-            opacity: 1;
         }
         h2 {
             font-family: 'Orbitron', sans-serif;
@@ -209,6 +209,26 @@
         }
         .glass-card:hover p {
             color: #fff;
+        }
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 10px auto;
+            padding-left: 20px;
+        }
+        .section-header h2 {
+            border-left: none;
+            padding-left: 0;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+        .section-header .sub-desc {
+            color: #aaa;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
         }
         .feature-list {
             display: grid;
@@ -357,17 +377,15 @@
             .glass-card { padding: 30px; }
             .dev-card { text-align: center; }
             .nav-links a { margin: 0 6px; font-size: 0.6rem; letter-spacing: 2px; }
+            .section-header h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body class="locked">
-
-    <audio id="bg-music" src="https://s31.aconvert.com/convert/p3r68-cdx67/iv3wa-h3pjq.mp3" loop></audio>
-
+    <audio id="bg-music" src="https://cdn.discordapp.com/attachments/1431569550612369408/1496162311088509119/TIA_-_Ai_ua_Em_Ve___Official_M_V___Ft._Le_Thien_Hieu_Low_Cortisol_Song.mp3?ex=69e989fc&is=69e8387c&hm=8925ebeaa067637f50ca1fe0faa45c4a8a26dbf150ff7d91db1550a7954cdb6f" loop></audio>
     <div id="entry-screen">
         <button class="enter-btn" id="enter-btn">𝖨𝗇𝗌𝗍𝖺𝗅𝗅 𝖵𝗒 𝖧𝗎𝖻</button>
     </div>
-
     <div class="bg-container"></div>
     <div class="scanline"></div>
 
@@ -391,8 +409,11 @@
     </header>
 
     <section id="about">
-        <div class="glass-card reveal">
+        <div class="section-header">
             <h2>關於我們 / ABOUT US</h2>
+            <div class="sub-desc">秩序重構者 · 混沌終結引擎</div>
+        </div>
+        <div class="glass-card">
             <p>
                 Vy Hub 誕生於對極致效率的純粹追求。在數位社群日益龐大與複雜的今天，我們不妥協於繁瑣的管理流程。我們專注於打造最簡約、最具侵略性的自動化控制核心。
                 <br><br>
@@ -402,8 +423,11 @@
     </section>
 
     <section id="origin">
-        <div class="glass-card reveal">
+        <div class="section-header">
             <h2>成立宗旨 / ORIGIN</h2>
+            <div class="sub-desc">制裁 · 統治 · 絕對力量</div>
+        </div>
+        <div class="glass-card">
             <p>
                 因為 Discord 目前太多屁孩，我們成立 Vy Hub 就是為了教訓這些人。我們透過絕對的制裁力量與自動化武器，讓他們明白什麼是真正的統治與法則——這是他們應得的代價。
             </p>
@@ -411,8 +435,11 @@
     </section>
 
     <section id="target">
-        <div class="glass-card reveal">
+        <div class="section-header">
             <h2>終極目標 / ULTIMATE TARGET</h2>
+            <div class="sub-desc">毀滅界碑文 · 制裁具現化</div>
+        </div>
+        <div class="glass-card">
             <p>
                 我們的目標是在 Discord 毀滅界刻下無法抹滅的歷史。我們將化身為制裁的具現化，無情懲罰那些自以為是、狂妄無知的傲慢之徒。在 Vy 的絕對力量面前，所有的虛偽都將被徹底粉碎。
             </p>
@@ -420,8 +447,11 @@
     </section>
 
     <section id="bot">
-        <div class="glass-card reveal">
+        <div class="section-header">
             <h2>核心武裝 / VY PROTOCOL</h2>
+            <div class="sub-desc">灰燼中的唯一法則</div>
+        </div>
+        <div class="glass-card">
             <p>
                 「當伺服器化為灰燼，Vy 便是唯一的法則。」
                 <br><br>
@@ -431,8 +461,11 @@
     </section>
 
     <section id="features">
-        <div class="glass-card reveal">
+        <div class="section-header">
             <h2>核心功能 / CORE FEATURES</h2>
+            <div class="sub-desc">高壓異步 · 絕對統治模組</div>
+        </div>
+        <div class="glass-card">
             <div class="feature-list">
                 <div class="feature-box">
                     <h4>ULTRA NUKE</h4>
@@ -463,18 +496,20 @@
     </section>
 
     <section id="dev">
-        <div class="glass-card reveal">
+        <div class="section-header">
             <h2>開發者 / DEVELOPERS</h2>
+            <div class="sub-desc">首席架構 · 毀滅代碼</div>
+        </div>
+        <div class="glass-card">
             <div class="dev-grid">
                 <div class="dev-card feature-box">
                     <div class="dev-avatar">
-                        <img src="https://i.pinimg.com/736x/42/59/6a/42596a0238945f90f2306225b2bf5187.jpg" alt="小堅果">
+                        <img src="https://i.pinimg.com/474x/27/1c/44/271c44f1dac26b49dfac8e611f8aceb3.jpg" alt="小堅果">
                     </div>
                     <h3 class="dev-name">小堅果 ღ𝑅𝑒𝑧𝑡ღ</h3>
                     <div class="uid-code">UID: 1183748865929781254</div>
-                    <p class="dev-desc">Vy Hub 首席代碼架構師與異步異構專家。致力於打造數位世界的極簡暴力美學。</p>
+                    <p class="dev-desc">我是雙性戀</p>
                 </div>
-
                 <div class="dev-card feature-box">
                     <div class="dev-avatar">
                         <img src="https://i.pinimg.com/736x/17/87/d3/1787d3e3ebf0d9aa274e5bba64ad82f5.jpg" alt="17">
@@ -490,7 +525,6 @@
                         <li><strong>Role 2:</strong> Vy owner</li>
                     </ul>
                 </div>
-
                 <div class="dev-card feature-box">
                     <div class="dev-avatar">
                         <img src="https://i.pinimg.com/736x/2e/4b/eb/2e4beb80079eac2464b3907619a745ed.jpg" alt="drancat">
@@ -504,8 +538,11 @@
     </section>
 
     <section id="community" style="text-align: center;">
-        <div class="glass-card reveal">
+        <div class="section-header">
             <h2>我們的社群 / COMMUNITY</h2>
+            <div class="sub-desc">解鎖權限 · 第一手制裁</div>
+        </div>
+        <div class="glass-card">
             <p>想要獲取 PRO 權限、獲取 Token 或第一手更新消息？加入我們的全球社群。</p>
             <a href="https://discord.gg/5UBSGWCZQS" class="btn-main" target="_blank">JOIN US</a>
         </div>
@@ -516,38 +553,54 @@
     </footer>
 
     <script>
-        const entryScreen = document.getElementById('entry-screen');
-        const enterBtn = document.getElementById('enter-btn');
-        const body = document.body;
-        const bgMusic = document.getElementById('bg-music');
+        (function() {
+            const entryScreen = document.getElementById('entry-screen');
+            const enterBtn = document.getElementById('enter-btn');
+            const body = document.body;
+            const bgMusic = document.getElementById('bg-music');
 
-        enterBtn.addEventListener('click', () => {
-            bgMusic.play().catch(e => console.log("Audio playback failed:", e));
-            entryScreen.style.opacity = '0';
-            setTimeout(() => {
-                entryScreen.style.visibility = 'hidden';
-                body.classList.remove('locked');
-            }, 800);
-        });
-
-        const observerOptions = {
-            root: null,
-            threshold: 0.15,
-            rootMargin: "0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                }
+            enterBtn.addEventListener('click', () => {
+                bgMusic.play().catch(e => console.log("Audio playback failed:", e));
+                entryScreen.style.opacity = '0';
+                setTimeout(() => {
+                    entryScreen.style.visibility = 'hidden';
+                    body.classList.remove('locked');
+                }, 800);
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.glass-card').forEach(el => {
-            el.classList.add('reveal'); 
-            observer.observe(el);
-        });
+            const observerOptions = {
+                root: null,
+                threshold: 0.2,
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.glass-card').forEach(el => {
+                observer.observe(el);
+            });
+
+            const style = document.createElement('style');
+            style.textContent = `
+                .glass-card {
+                    opacity: 0;
+                    transform: translateY(40px) scale(0.98);
+                    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s, background 0.4s, border 0.4s;
+                }
+                .glass-card.reveal {
+                    opacity: 1 !important;
+                    transform: translateY(0) scale(1) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        })();
     </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"0bf9d30191d84ebb9567e4293ebe8185","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
