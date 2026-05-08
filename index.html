@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -177,7 +176,7 @@
             backdrop-filter: blur(10px);
             border-radius: 4px;
             margin-bottom: 60px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.4s ease, border 0.4s ease, opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.4s ease, border 0.4s ease, opacity 0.7s ease;
             opacity: 0;
             transform: translateY(40px) scale(0.98);
         }
@@ -233,7 +232,7 @@
         }
         .feature-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
@@ -254,8 +253,8 @@
         }
         .dev-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin-top: 40px;
         }
         .dev-card {
@@ -267,6 +266,7 @@
             border: 1px solid var(--border);
             background: rgba(255, 255, 255, 0.02);
             transition: 0.4s ease;
+            height: 100%;
         }
         .dev-card:hover {
             background: #fff;
@@ -279,6 +279,7 @@
             padding: 5px;
             border-radius: 50%;
             transition: 0.5s;
+            overflow: hidden;
         }
         .dev-card:hover .dev-avatar {
             transform: rotate(360deg);
@@ -503,6 +504,7 @@
         </div>
         <div class="glass-card">
             <div class="dev-grid">
+                <!-- Developer 1 -->
                 <div class="dev-card feature-box">
                     <div class="dev-avatar">
                         <img src="https://i.pinimg.com/474x/27/1c/44/271c44f1dac26b49dfac8e611f8aceb3.jpg" alt="小堅果">
@@ -511,6 +513,7 @@
                     <div class="uid-code">UID: 1183748865929781254</div>
                     <p class="dev-desc">我是雙性戀</p>
                 </div>
+                <!-- Developer 2 -->
                 <div class="dev-card feature-box">
                     <div class="dev-avatar">
                         <img src="https://i.pinimg.com/736x/17/87/d3/1787d3e3ebf0d9aa274e5bba64ad82f5.jpg" alt="17">
@@ -526,6 +529,7 @@
                         <li><strong>Role 2:</strong> Vy owner</li>
                     </ul>
                 </div>
+                <!-- Developer 3 -->
                 <div class="dev-card feature-box">
                     <div class="dev-avatar">
                         <img src="https://i.pinimg.com/736x/2e/4b/eb/2e4beb80079eac2464b3907619a745ed.jpg" alt="drancat">
@@ -533,6 +537,15 @@
                     <h3 class="dev-name">drancat</h3>
                     <div class="uid-code">UID: 1084139312779624538</div>
                     <p class="dev-desc">我是小男娘</p>
+                </div>
+                <!-- Developer 4: Kael -->
+                <div class="dev-card feature-box">
+                    <div class="dev-avatar">
+                        <img src="https://cdn.discordapp.com/avatars/1499703249035329628/23d2207e184edda4dd775337463ed9e6.webp?size=1024" alt="Kael">
+                    </div>
+                    <h3 class="dev-name">Kael</h3>
+                    <div class="uid-code">UID: 1499703249035329628</div>
+                    <p class="dev-desc">somewhere between fine and not.</p>
                 </div>
             </div>
         </div>
@@ -571,7 +584,7 @@
 
             const observerOptions = {
                 root: null,
-                threshold: 0.2,
+                threshold: 0.1,
                 rootMargin: "0px"
             };
 
@@ -602,7 +615,5 @@
             document.head.appendChild(style);
         })();
     </script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"0bf9d30191d84ebb9567e4293ebe8185","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"0bf9d30191d84ebb9567e4293ebe8185","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
